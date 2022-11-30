@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="produce" method="post">
+    <a>太阳</a>
+    <p>信息1：<input type="text" name="param1" value="red"/></p>
+    <p>信息2：<input type="text" name="param2" value="blue"/></p>
+    <p><input type="submit" value="生产"/></p>
+</form>
+
+<a>青草</a>
+<span th:each="cookie :${#httpServletRequest.getCookies()}"
+      th:if="${cookie.getName().equals('kafkaMsg')}"
+      th:text="${cookie.getValue()}">
+</span>
+
+<P>
+<a>-------------------</a>
+<form action="consume" method="get">
+    <a>山羊</a>
+    <span th:each="cookie :${#httpServletRequest.getCookies()}"
+          th:if="${cookie.getName().equals('kafkaConsumeMsg1')}"
+          th:text="${cookie.getValue()}">
+    </span>
+    <span th:each="cookie :${#httpServletRequest.getCookies()}"
+          th:if="${cookie.getName().equals('kafkaConsumeMsg2')}"
+          th:text="${cookie.getValue()}">
+    </span>
+    <p><input type="submit" value="消费"/></p>
+</form>
+
+
+</body>
+</html>
